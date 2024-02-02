@@ -1,8 +1,8 @@
-# Voted Peceptron
+# Voted Peceptron & Average Perceptron
 <img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue"  alt="Python"/>
 
 <!-- TOC -->
-* [Voted Peceptron](#voted-peceptron)
+* [Voted Peceptron & Average Perceptron](#voted-peceptron--average-perceptron)
     * [Dataset and Papers](#dataset-and-papers)
   * [Getting Started](#getting-started)
     * [Prerequisites](#prerequisites)

@@ -1,7 +1,7 @@
 from tqdm import notebook
 
 from dataSetFunctions import *
-from perceptronModel import VotedPerceptron
+from perceptronModel import VotedPerceptron, AveragePerceptron
 from parameters import *
 import matplotlib.pyplot as plt
 
@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser( description='Usage: main.py --drawTestErrorPlo
                                               '--withAverageModel' )
 parser.add_argument('--drawTestErrorDiagram', action='store_true',
                     help='Draw Test Error Diagram on 10 Epochs' )
-parser.add_argument('--numberEpoch', type=int, default=10, help='Epoch Number (Default 10)')
+parser.add_argument('--numberEpoch', type=int, default=5, help='Epoch Number (Default 10)')
 parser.add_argument('--withAverageModel', action='store_true',
                     help='Include Average Perceptron Model Prediction' )
 args = parser.parse_args()
@@ -48,9 +48,9 @@ if args.drawTestErrorDiagram:
         errorAveraged = []
         for i in tqdm( range(1, args.numberEpoch + 1 ), desc='Average Perceptron Training & Prediction'):
             errorAveraged.append(0)
-            avgPerceptron = VotedPerceptron(n_iter=i)
+            avgPerceptron = AveragePerceptron(n_iter=i)
             avgPerceptron.train(trainData, trainLabels)
-            prediction = avgPerceptron.multiplePredict(testData, avgPerceptronModel=True)
+            prediction = avgPerceptron.multiplePredict( testData )
             for j in range(len(prediction)):
                 if prediction[j] != (-1 if testLabel[j] < 5 else 1):
                     errorAveraged[i - 1] += 1
@@ -78,12 +78,12 @@ else:
     print( "Voted Perceptron Prediction: " + str(prediction) )
 
     if args.withAverageModel:
-        avgPerceptron = VotedPerceptron( n_iter=args.numberEpoch )
+        avgPerceptron = AveragePerceptron( n_iter=args.numberEpoch )
         avgPerceptron.train( trainData, trainLabels )
-        avgPrediction = avgPerceptron.predict( testData[randomTestIndex], avgPerceptronModel=True )
+        avgPrediction = avgPerceptron.predict( testData[randomTestIndex] )
         print( "Average Perceptron Prediction: " + str(avgPrediction) )
 
-    drawMNISTRecord(testData[randomTestIndex])
+    drawMNISTRecord( testData[randomTestIndex] )
 
 
 
