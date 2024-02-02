@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser( description='Usage: main.py --drawTestErrorPlo
                                               '--withAverageModel' )
 parser.add_argument('--drawTestErrorDiagram', action='store_true',
                     help='Draw Test Error Diagram on 10 Epochs' )
-parser.add_argument('--numberEpoch', type=int, default=5, help='Epoch Number (Default 10)')
+parser.add_argument('--numberEpoch', type=int, default=10, help='Epoch Number (Default 10)')
 parser.add_argument('--withAverageModel', action='store_true',
                     help='Include Average Perceptron Model Prediction' )
 args = parser.parse_args()
